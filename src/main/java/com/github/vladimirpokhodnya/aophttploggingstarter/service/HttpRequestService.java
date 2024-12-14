@@ -1,17 +1,15 @@
 package com.github.vladimirpokhodnya.aophttploggingstarter.service;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.stereotype.Component;
-import org.springframework.web.util.ContentCachingRequestWrapper;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
+@Service
+@ConditionalOnProperty(name = "http.logging.enabled", havingValue = "true")
 public class HttpRequestService {
 
     private final HttpServletRequest request;
@@ -33,8 +31,4 @@ public class HttpRequestService {
         return headers;
     }
 
-
-    public String getRequestBody() {
-        return "***BODY***";
-    }
 }

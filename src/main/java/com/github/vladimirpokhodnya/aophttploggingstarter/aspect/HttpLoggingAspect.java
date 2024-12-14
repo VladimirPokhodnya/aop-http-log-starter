@@ -8,10 +8,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
 public class HttpLoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpLoggingAspect.class);
@@ -38,10 +36,6 @@ public class HttpLoggingAspect {
         if(properties.getLevel() == HttpLoggingProperties.LogLevel.MEDIUM  ||
            properties.getLevel() == HttpLoggingProperties.LogLevel.FULL) {
             logger.info("Incoming headers: {}", requestService.getRequestHeaders());
-        }
-
-        if(properties.getLevel() == HttpLoggingProperties.LogLevel.FULL) {
-            logger.info("Request body: {}", requestService.getRequestBody());
         }
 
         Object response = joinPoint.proceed();
