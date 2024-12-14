@@ -1,5 +1,7 @@
-package com.github.vladimirpokhodnya.aophttploggingstarter;
+package com.github.vladimirpokhodnya.aophttploggingstarter.aspect;
 
+import com.github.vladimirpokhodnya.aophttploggingstarter.config.HttpLoggingProperties;
+import com.github.vladimirpokhodnya.aophttploggingstarter.service.HttpRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

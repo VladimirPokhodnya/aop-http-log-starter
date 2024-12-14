@@ -1,5 +1,7 @@
-package com.github.vladimirpokhodnya.aophttploggingstarter;
+package com.github.vladimirpokhodnya.aophttploggingstarter.config;
 
+import com.github.vladimirpokhodnya.aophttploggingstarter.aspect.HttpLoggingAspect;
+import com.github.vladimirpokhodnya.aophttploggingstarter.service.HttpRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,4 +15,5 @@ public class HttpLoggingAutoConfiguration {
                                                HttpRequestService requestService) {
         return new HttpLoggingAspect(properties, request, requestService);
     }
+
 }
