@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "com.github.vladimirpokhodnya.aophttploggingstarter")
 public class HttpLoggingAutoConfiguration {
     @Bean
-    public HttpLoggingAspect httpLoggingAspect(HttpLoggingProperties properties ,HttpServletRequest request) {
-        return new HttpLoggingAspect(properties, request);
+    public HttpLoggingAspect httpLoggingAspect(HttpLoggingProperties properties, HttpServletRequest request,
+                                               HttpRequestService requestService) {
+        return new HttpLoggingAspect(properties, request, requestService);
     }
 }
