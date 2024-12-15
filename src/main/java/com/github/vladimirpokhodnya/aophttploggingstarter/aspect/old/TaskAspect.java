@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class TaskAspect {
     private static final Logger logger = LoggerFactory.getLogger(TaskAspect.class.getName());
 
-    @Before("@annotation(com.github.vladimirpokhodnya.aophttploggingstarter.aspect.old.annotation.LogException)")
+    @Before("@annotation(com.github.vladimirpokhodnya.aophttploggingstarter.aspect.old.annotation.LogExecution)")
     public void logBefore(JoinPoint joinPoint) {
         logger.info("Before calling method {}", joinPoint.getSignature().getName());
     }
