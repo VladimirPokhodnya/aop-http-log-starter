@@ -31,7 +31,7 @@ public class HttpLoggingAspect {
             return joinPoint.proceed();
         }
 
-        logger.info("Incoming request: method={}, URI={}", request.getMethod(), request.getRequestURI());
+        logger.info("Incoming request: method={}, URL={}", request.getMethod(), request.getRequestURL());
 
         if(properties.getLevel() == HttpLoggingProperties.LogLevel.MEDIUM  ||
            properties.getLevel() == HttpLoggingProperties.LogLevel.FULL) {
