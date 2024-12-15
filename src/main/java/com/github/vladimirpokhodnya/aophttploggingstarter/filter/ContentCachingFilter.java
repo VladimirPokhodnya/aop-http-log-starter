@@ -27,7 +27,7 @@ public class ContentCachingFilter implements Filter {
         String requestBody = getRequestBody(wrappedRequest);
 
         if(requestBody.length() > 0) {
-            logger.info("Request Body: " + requestBody);
+            logger.info("Request Body:\n" + requestBody);
         } else {
             logger.info("No Request Body");
         }
