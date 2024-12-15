@@ -38,7 +38,6 @@ public class HttpRequestService {
         return headers;
     }
 
-
     public String getRequestBody(Object[] args) {
         StringBuilder requestBody = new StringBuilder();
         for (Object arg : args) {

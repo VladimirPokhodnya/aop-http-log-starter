@@ -1,9 +1,7 @@
 package com.github.vladimirpokhodnya.aophttploggingstarter.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @ConfigurationProperties(prefix = "http.logging")
 public class HttpLoggingProperties {
     private boolean enabled = true;
