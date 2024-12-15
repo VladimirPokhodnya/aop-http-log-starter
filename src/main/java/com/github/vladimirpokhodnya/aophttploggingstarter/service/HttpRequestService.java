@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@ConditionalOnProperty(name = "http.logging.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "http.logging.enabled", havingValue = "true", matchIfMissing = true)
 public class HttpRequestService {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpRequestService.class);
