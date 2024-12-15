@@ -1,1 +1,3 @@
 com.github.vladimirpokhodnya.aophttploggingstarter.aspect.old.TaskAspect
+com.github.vladimirpokhodnya.aophttploggingstarter.config.HttpLoggingAutoConfiguration
+com.github.vladimirpokhodnya.aophttploggingstarter.service.HttpRequestService
