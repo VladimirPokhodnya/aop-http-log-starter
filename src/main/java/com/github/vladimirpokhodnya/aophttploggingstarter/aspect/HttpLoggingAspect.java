@@ -15,12 +15,11 @@ public class HttpLoggingAspect {
 
 private static final Logger logger = LogManager.getLogger(HttpLoggingAspect.class);
 
-    private final HttpLoggingProperties properties;
-
     public static final Level MINIMAL = Level.forName("MINIMAL HTTP LOG", 350);
     public static final Level MEDIUM = Level.forName("MEDIUM HTTP LOG", 351);
     public static final Level FULL = Level.forName("FULL HTTP LOG", 352);
 
+    private final HttpLoggingProperties properties;
     private final HttpRequestService requestService;
 
     public HttpLoggingAspect(HttpLoggingProperties properties, HttpRequestService requestService) {
