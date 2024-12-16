@@ -2,16 +2,17 @@ package com.github.vladimirpokhodnya.aophttploggingstarter.aspect;
 
 import com.github.vladimirpokhodnya.aophttploggingstarter.config.HttpLoggingProperties;
 import com.github.vladimirpokhodnya.aophttploggingstarter.service.HttpRequestService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Aspect
 public class HttpLoggingAspect {
 
-    private static final Logger logger = LoggerFactory.getLogger(HttpLoggingAspect.class);
+private static final Logger logger = LogManager.getLogger(HttpLoggingAspect.class);
 
     private final HttpLoggingProperties properties;
     private final HttpRequestService requestService;
@@ -40,21 +41,21 @@ public class HttpLoggingAspect {
     }
 
     private void logIncomingRequestHeaders() {
-        logger.info("[MEDIUM] Incoming headers: {}", requestService.getRequestHeaders());
+        logger.log(CustomLogLevels.MEDIUM, "Incoming headers: {}", requestService.getRequestHeaders());
     }
 
     private void logIncomingRequestInfo() {
-        logger.info("[MINIMAL] Incoming request: method={}, URL={}", requestService.getMethod(), requestService.getRequestURL());
+        logger.log(CustomLogLevels.MINIMAL,"Incoming request: method={}, URL={}", requestService.getMethod(), requestService.getRequestURL());
     }
 
     private void logOutgoingResponse(Object response) {
-        logger.info("[MINIMAL] Outgoing response: {}", response);
+        logger.log(CustomLogLevels.MINIMAL,"Outgoing response: {}", response);
     }
 
     private void logRequestBody(ProceedingJoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
         String requestBody = requestService.getRequestBody(args);
-        logger.info("[FULL] Incoming request body: {}", requestBody);
+        logger.log(CustomLogLevels.FULL,"Incoming request body: {}", requestBody);
     }
 }
 
