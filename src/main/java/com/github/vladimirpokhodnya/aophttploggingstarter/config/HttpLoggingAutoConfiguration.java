@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 @AutoConfiguration
 @EnableConfigurationProperties(HttpLoggingProperties.class)
 public class HttpLoggingAutoConfiguration {
+
     @Bean
     @ConditionalOnProperty(name = "http.logging.enabled", havingValue = "true", matchIfMissing = true)
     public HttpLoggingAspect httpLoggingAspect(HttpLoggingProperties properties,

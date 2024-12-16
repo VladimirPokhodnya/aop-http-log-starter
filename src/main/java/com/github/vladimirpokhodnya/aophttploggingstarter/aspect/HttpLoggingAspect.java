@@ -28,6 +28,7 @@ public class HttpLoggingAspect {
 
     @Around("within(@org.springframework.web.bind.annotation.RestController *)")
     public Object logHttpRequest(ProceedingJoinPoint joinPoint) throws Throwable {
+
         logIncomingRequestInfo();
 
         Object response = joinPoint.proceed();
