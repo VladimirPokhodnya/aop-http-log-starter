@@ -8,12 +8,11 @@ import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.LoggerFactory;
 
 @Aspect
 public class HttpLoggingAspect {
 
-private static final Logger logger = LogManager.getLogger(HttpLoggingAspect.class);
+    private static final Logger logger = LogManager.getLogger(HttpLoggingAspect.class);
 
     public static final Level MINIMAL = Level.forName("MINIMAL HTTP LOG", 350);
     public static final Level MEDIUM = Level.forName("MEDIUM HTTP LOG", 351);
@@ -50,17 +49,17 @@ private static final Logger logger = LogManager.getLogger(HttpLoggingAspect.clas
     }
 
     private void logIncomingRequestInfo() {
-        logger.log(MINIMAL,"Incoming request: method={}, URL={}", requestService.getMethod(), requestService.getRequestURL());
+        logger.log(MINIMAL, "Incoming request: method={}, URL={}", requestService.getMethod(), requestService.getRequestURL());
     }
 
     private void logOutgoingResponse(Object response) {
-        logger.log(MINIMAL,"Outgoing response: {}", response);
+        logger.log(MINIMAL, "Outgoing response: {}", response);
     }
 
     private void logRequestBody(ProceedingJoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
         String requestBody = requestService.getRequestBody(args);
-        logger.log(FULL,"Incoming request body: {}", requestBody);
+        logger.log(FULL, "Incoming request body: {}", requestBody);
     }
 }
 
