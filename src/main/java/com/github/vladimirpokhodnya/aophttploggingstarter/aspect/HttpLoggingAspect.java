@@ -23,7 +23,7 @@ public class HttpLoggingAspect {
 
     @Around("within(@org.springframework.web.bind.annotation.RestController *)")
     public Object logHttpRequest(ProceedingJoinPoint joinPoint) throws Throwable {
-        logIncomingRequestMinimal();
+        logIncomingRequestInfo();
 
         Object response = joinPoint.proceed();
 
@@ -43,12 +43,12 @@ public class HttpLoggingAspect {
         logger.info("[MEDIUM] Incoming headers: {}", requestService.getRequestHeaders());
     }
 
-    private void logIncomingRequestMinimal() {
+    private void logIncomingRequestInfo() {
         logger.info("[MINIMAL] Incoming request: method={}, URL={}", requestService.getMethod(), requestService.getRequestURL());
     }
 
     private void logOutgoingResponse(Object response) {
-        logger.info("[MINIMAL] Outgoing response: status={}", response);
+        logger.info("[MINIMAL] Outgoing response: {}", response);
     }
 
     private void logRequestBody(ProceedingJoinPoint joinPoint) {
