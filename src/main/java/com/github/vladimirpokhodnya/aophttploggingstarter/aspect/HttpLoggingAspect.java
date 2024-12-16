@@ -23,11 +23,14 @@ public class HttpLoggingAspect {
 
     @Around("within(@org.springframework.web.bind.annotation.RestController *)")
     public Object logHttpRequest(ProceedingJoinPoint joinPoint) throws Throwable {
-        logIncomingRequest();
+        logIncomingRequestMinimal();
 
         Object response = joinPoint.proceed();
 
-        if (properties.getLevel() == HttpLoggingProperties.LogLevel.FULL) {
+        if (properties.getLevel() == HttpLoggingProperties.LogLevel.MEDIUM) {
+            logIncomingRequestMedium();
+        } else if (properties.getLevel() == HttpLoggingProperties.LogLevel.FULL) {
+            logIncomingRequestMedium();
             logRequestBody(joinPoint);
         }
 
@@ -36,16 +39,15 @@ public class HttpLoggingAspect {
         return response;
     }
 
-    private void logIncomingRequest() {
-        logger.info("[MINIMAL] Incoming request: method={}, URL={}", requestService.getMethod(), requestService.getRequestURL());
-
-        if (properties.getLevel() == HttpLoggingProperties.LogLevel.MEDIUM ||
-            properties.getLevel() == HttpLoggingProperties.LogLevel.FULL) {
-            logger.info("[MEDIUM] Incoming headers: {}", requestService.getRequestHeaders());
-        }
+    private void logIncomingRequestMedium() {
+        logger.info("[MEDIUM] Incoming headers: {}", requestService.getRequestHeaders());
     }
 
-    private void logOutgoingResponse(Object response) {
+    private void logIncomingRequestMinimal() {
+        logger.info("[MINIMAL] Incoming request: method={}, URL={}", requestService.getMethod(), requestService.getRequestURL());
+    }
+
+    private void logOutgoingResponseq(Object response) {
         logger.info("[MINIMAL] Outgoing response: status={}", response);
     }
 
