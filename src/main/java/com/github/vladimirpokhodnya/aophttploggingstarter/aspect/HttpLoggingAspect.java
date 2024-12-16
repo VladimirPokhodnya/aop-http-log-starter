@@ -28,9 +28,9 @@ public class HttpLoggingAspect {
         Object response = joinPoint.proceed();
 
         if (properties.getLevel() == HttpLoggingProperties.LogLevel.MEDIUM) {
-            logIncomingRequestMedium();
+            logIncomingRequestHeaders();
         } else if (properties.getLevel() == HttpLoggingProperties.LogLevel.FULL) {
-            logIncomingRequestMedium();
+            logIncomingRequestHeaders();
             logRequestBody(joinPoint);
         }
 
@@ -39,7 +39,7 @@ public class HttpLoggingAspect {
         return response;
     }
 
-    private void logIncomingRequestMedium() {
+    private void logIncomingRequestHeaders() {
         logger.info("[MEDIUM] Incoming headers: {}", requestService.getRequestHeaders());
     }
 
@@ -47,7 +47,7 @@ public class HttpLoggingAspect {
         logger.info("[MINIMAL] Incoming request: method={}, URL={}", requestService.getMethod(), requestService.getRequestURL());
     }
 
-    private void logOutgoingResponseq(Object response) {
+    private void logOutgoingResponse(Object response) {
         logger.info("[MINIMAL] Outgoing response: status={}", response);
     }
 
